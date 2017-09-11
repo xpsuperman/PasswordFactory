@@ -1,8 +1,8 @@
 //
-//  ViewController.h
+//  PWFFactoryViewController.h
 //  PasswordFactory
 //
-//  Created by Xu Peng on 2017/8/3.
+//  Created by 徐朋 on 2017/9/7.
 //  Copyright © 2017年 lilac. All rights reserved.
 //
 
@@ -10,8 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ViewController : PWFBaseViewController
-
+@interface PWFFactoryViewController : PWFBaseViewController
 
 @end
 

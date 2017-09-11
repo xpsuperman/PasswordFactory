@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "PWFRouter.h"
+#import "PWFDataManager.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface ViewController ()
 
@@ -14,16 +18,35 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self setupUI];
+    [self checkAccountInfo];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupUI
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
+    [self.view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(320, 320));
+    }];
 }
 
+- (void)checkAccountInfo //用户冷启动之后两个小时之内算登录成功
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        BOOL isLogin = [[PWFDataManager sharedInstance] isLogin];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [PWFRouter routerWithTarget:isLogin ? PWFRouterFactory : PWFRouterLogin];
+        });
+    });
+}
 
 @end
+
+NS_ASSUME_NONNULL_END
