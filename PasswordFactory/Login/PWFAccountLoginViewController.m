@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIButton *)createButtonWithTitle:(NSString *)title selector:(SEL)selector
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundColor:RGBCOLOR(3, 78, 162)];
+    [button setBackgroundColor:RGBCOLOR(4, 172, 216)];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     button.layer.cornerRadius = 2.0f;
     button.layer.masksToBounds = YES;

@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PWFNavigationController : UINavigationController
 
 @end
+
+
+@interface UIViewController (PWFNavigationController)
+
+- (UIBarButtonItem *)backBarButtonItem;
+
+@end
+
+NS_ASSUME_NONNULL_END

@@ -22,8 +22,16 @@ NS_ASSUME_NONNULL_BEGIN
 {
     [super viewDidLoad];
     self.navigationItem.title = @"密码工厂";
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    self.navigationItem.rightBarButtonItem = [self logoutBarButtonItem];
+}
+
+- (UIBarButtonItem *)logoutBarButtonItem
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 44, 44);
+    [button setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
+    [button addTarget: self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 - (void)logout:(id)sender

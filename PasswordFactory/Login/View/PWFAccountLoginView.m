@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.top.equalTo(self);
     }];
     
-    _nameTextField = [self createTextFieldWithPlaceholder:@"请输入用户名"];
+    _nameTextField = [self createTextFieldWithPlaceholder:@"请输入用户名" password:YES];
     [self addSubview:_nameTextField];
     [self.nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(nameLabel.mas_right);
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.bottom.equalTo(self);
     }];
     
-    _passwordTextField = [self createTextFieldWithPlaceholder:@"请输入密码"];
+    _passwordTextField = [self createTextFieldWithPlaceholder:@"请输入密码" password:YES];
     [self addSubview:_passwordTextField];
     [self.passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.nameTextField);
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     return titleLabel;
 }
 
-- (UITextField *)createTextFieldWithPlaceholder:(NSString *)placeholder
+- (UITextField *)createTextFieldWithPlaceholder:(NSString *)placeholder password:(BOOL)isPassword
 {
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
     textField.borderStyle = UITextBorderStyleLine;
@@ -82,6 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
     textField.textColor = [UIColor blackColor];
     textField.font = [UIFont systemFontOfSize:15.0f];
     textField.placeholder = placeholder;
+    textField.secureTextEntry = isPassword;
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 30)];
     textField.leftView = leftView;
     textField.leftViewMode = UITextFieldViewModeAlways;
