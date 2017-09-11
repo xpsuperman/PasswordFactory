@@ -8,6 +8,7 @@
 
 #import "PWFAccountLoginViewController.h"
 #import "PWFAccountLoginView.h"
+#import "UIButton+Customer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.top.equalTo(iconImageView.mas_bottom).offset(20);
     }];
     
-    _loginButton = [self createButtonWithTitle:functionTitle selector:@selector(accountAction:)];
+    _loginButton = [UIButton buttonWithTitle:functionTitle target:self selector:@selector(accountAction:)];
     [self.view addSubview:_loginButton];
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -60,19 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
         make.height.mas_equalTo(30);
     }];
 }
-
-- (UIButton *)createButtonWithTitle:(NSString *)title selector:(SEL)selector
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundColor:RGBCOLOR(4, 172, 216)];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.layer.cornerRadius = 2.0f;
-    button.layer.masksToBounds = YES;
-    [button setTitle:title forState:UIControlStateNormal];
-    [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    return button;
-}
-
 
 #pragma mark -
 #pragma mark Selector Methods

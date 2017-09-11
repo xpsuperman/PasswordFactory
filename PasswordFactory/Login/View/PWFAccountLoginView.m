@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.top.equalTo(self);
     }];
     
-    _nameTextField = [self createTextFieldWithPlaceholder:@"请输入用户名" password:YES];
+    _nameTextField = [self createTextFieldWithPlaceholder:@"请输入用户名" password:NO];
     [self addSubview:_nameTextField];
     [self.nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(nameLabel.mas_right);

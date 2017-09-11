@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupAccountUI;
 - (BOOL)accountAction:(id)sender;
-- (UIButton *)createButtonWithTitle:(NSString *)title selector:(SEL)selector;
 
 @end
 

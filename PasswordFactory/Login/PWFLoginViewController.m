@@ -13,6 +13,7 @@
 #import "PWFError.h"
 #import "PWFRouter.h"
 #import "PWFAccountInfo.h"
+#import "UIButton+Customer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.height.mas_equalTo(20);
     }];
     
-    UIButton *registerButton = [self createButtonWithTitle:@"注册" selector:@selector(toRegister:)];
+    UIButton *registerButton = [UIButton buttonWithTitle:@"注册" target:self selector:@selector(toRegister:)];
     [self.view addSubview:registerButton];
     [registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(100);

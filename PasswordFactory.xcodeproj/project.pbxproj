@@ -19,6 +19,11 @@
 		116178A71F62349100423981 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178A61F62349100423981 /* NSString+Utils.m */; };
 		116178AB1F62739A00423981 /* PWFRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178AA1F62739A00423981 /* PWFRouter.m */; };
 		116178AE1F62938C00423981 /* PWFAccountLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178AD1F62938C00423981 /* PWFAccountLoginViewController.m */; };
+		116178B21F667F3000423981 /* PWFFactoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178B11F667F3000423981 /* PWFFactoryHeaderView.m */; };
+		116178B51F66852700423981 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178B41F66852700423981 /* UIImage+Resize.m */; };
+		116178B81F66A8CD00423981 /* UIButton+Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178B71F66A8CD00423981 /* UIButton+Customer.m */; };
+		116178BB1F66AE5900423981 /* PWFPasswordHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178BA1F66AE5900423981 /* PWFPasswordHistoryViewController.m */; };
+		116178BF1F66B2A400423981 /* PWFPasswordGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 116178BE1F66B2A400423981 /* PWFPasswordGenerator.m */; };
 		929E1CF66430D58CBB94B5E1 /* libPods-PasswordFactory.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B42C0FB3FA08C263019EB781 /* libPods-PasswordFactory.a */; };
 		BC1E5BA85C8B4B298B6F39BD /* libPods-PasswordFactoryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3A39748178586A7E3F79B4 /* libPods-PasswordFactoryTests.a */; };
 		C9B95F921F32C1BD001B5798 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B95F911F32C1BD001B5798 /* main.m */; };
@@ -76,6 +81,16 @@
 		116178AA1F62739A00423981 /* PWFRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWFRouter.m; sourceTree = "<group>"; };
 		116178AC1F62938C00423981 /* PWFAccountLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWFAccountLoginViewController.h; sourceTree = "<group>"; };
 		116178AD1F62938C00423981 /* PWFAccountLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWFAccountLoginViewController.m; sourceTree = "<group>"; };
+		116178B01F667F3000423981 /* PWFFactoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWFFactoryHeaderView.h; sourceTree = "<group>"; };
+		116178B11F667F3000423981 /* PWFFactoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWFFactoryHeaderView.m; sourceTree = "<group>"; };
+		116178B31F66852700423981 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		116178B41F66852700423981 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		116178B61F66A8CD00423981 /* UIButton+Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Customer.h"; sourceTree = "<group>"; };
+		116178B71F66A8CD00423981 /* UIButton+Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Customer.m"; sourceTree = "<group>"; };
+		116178B91F66AE5900423981 /* PWFPasswordHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWFPasswordHistoryViewController.h; sourceTree = "<group>"; };
+		116178BA1F66AE5900423981 /* PWFPasswordHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWFPasswordHistoryViewController.m; sourceTree = "<group>"; };
+		116178BD1F66B2A400423981 /* PWFPasswordGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PWFPasswordGenerator.h; sourceTree = "<group>"; };
+		116178BE1F66B2A400423981 /* PWFPasswordGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PWFPasswordGenerator.m; sourceTree = "<group>"; };
 		1D53815973432F60AC1C11A8 /* Pods-PasswordFactory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasswordFactory.release.xcconfig"; path = "Pods/Target Support Files/Pods-PasswordFactory/Pods-PasswordFactory.release.xcconfig"; sourceTree = "<group>"; };
 		2B3A39748178586A7E3F79B4 /* libPods-PasswordFactoryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PasswordFactoryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C1C15986779B62AC293155 /* Pods-PasswordFactoryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PasswordFactoryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PasswordFactoryUITests/Pods-PasswordFactoryUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,8 +176,11 @@
 		1145AF401F613B330081FEBF /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				116178AF1F667F0D00423981 /* View */,
 				111B73641F615F2100972C55 /* PWFFactoryViewController.h */,
 				111B73651F615F2100972C55 /* PWFFactoryViewController.m */,
+				116178B91F66AE5900423981 /* PWFPasswordHistoryViewController.h */,
+				116178BA1F66AE5900423981 /* PWFPasswordHistoryViewController.m */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -194,6 +212,10 @@
 				116178A31F62326C00423981 /* PWFError.m */,
 				116178A51F62349100423981 /* NSString+Utils.h */,
 				116178A61F62349100423981 /* NSString+Utils.m */,
+				116178B31F66852700423981 /* UIImage+Resize.h */,
+				116178B41F66852700423981 /* UIImage+Resize.m */,
+				116178B61F66A8CD00423981 /* UIButton+Customer.h */,
+				116178B71F66A8CD00423981 /* UIButton+Customer.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -205,6 +227,24 @@
 				116178AA1F62739A00423981 /* PWFRouter.m */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		116178AF1F667F0D00423981 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				116178B01F667F3000423981 /* PWFFactoryHeaderView.h */,
+				116178B11F667F3000423981 /* PWFFactoryHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		116178BC1F66B27F00423981 /* Generate */ = {
+			isa = PBXGroup;
+			children = (
+				116178BD1F66B2A400423981 /* PWFPasswordGenerator.h */,
+				116178BE1F66B2A400423981 /* PWFPasswordGenerator.m */,
+			);
+			path = Generate;
 			sourceTree = "<group>";
 		};
 		98BCD7859ED3CA920279F986 /* Pods */ = {
@@ -255,6 +295,7 @@
 		C9B95F8F1F32C1BD001B5798 /* PasswordFactory */ = {
 			isa = PBXGroup;
 			children = (
+				116178BC1F66B27F00423981 /* Generate */,
 				116178A81F62737A00423981 /* Router */,
 				1145AF421F613B550081FEBF /* Base */,
 				1145AF3F1F613B330081FEBF /* Data */,
@@ -593,10 +634,15 @@
 				1145AF451F613B900081FEBF /* PWFBaseViewController.m in Sources */,
 				C9B95F951F32C1BD001B5798 /* AppDelegate.m in Sources */,
 				116178A71F62349100423981 /* NSString+Utils.m in Sources */,
+				116178B21F667F3000423981 /* PWFFactoryHeaderView.m in Sources */,
 				111B73631F615B3200972C55 /* PWFNavigationController.m in Sources */,
+				116178BF1F66B2A400423981 /* PWFPasswordGenerator.m in Sources */,
+				116178BB1F66AE5900423981 /* PWFPasswordHistoryViewController.m in Sources */,
 				111B736A1F619D1600972C55 /* PWFRegisterViewController.m in Sources */,
 				111B736E1F619D3500972C55 /* PWFAccountInfo.m in Sources */,
 				C9B95F921F32C1BD001B5798 /* main.m in Sources */,
+				116178B81F66A8CD00423981 /* UIButton+Customer.m in Sources */,
+				116178B51F66852700423981 /* UIImage+Resize.m in Sources */,
 				1145AF4B1F613BFB0081FEBF /* PWFDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
