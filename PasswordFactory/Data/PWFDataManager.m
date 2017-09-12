@@ -11,6 +11,7 @@
 #import "YapDatabase.h"
 #import "PWFError.h"
 #import "NSString+Utils.h"
+#import "PWFPasswordInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -79,7 +80,7 @@ static double const kPWFLoginTimeInterval = 2.0 * 60 * 60;//登录时间为两�
 /**
  Login Info
  **/
-- (void)registerWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFLoginCompletionBlock)completion
+- (void)registerWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFDataCompletionBlock)completion
 {
     if (!name.length || !password.length) {
         PWFError *error = [PWFError errorWithDomain:@"用户名或密码不存在" code:PWFErrorCodeNormal];
@@ -108,7 +109,7 @@ static double const kPWFLoginTimeInterval = 2.0 * 60 * 60;//登录时间为两�
 
 }
 
-- (void)loginWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFLoginCompletionBlock)completion
+- (void)loginWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFDataCompletionBlock)completion
 {
     if (!name.length || !password.length) {
         PWFError *error = [PWFError errorWithDomain:@"用户名或密码不存在" code:PWFErrorCodeNormal];
@@ -118,19 +119,23 @@ static double const kPWFLoginTimeInterval = 2.0 * 60 * 60;//登录时间为两�
         return;
     }
     __block BOOL loginSuccess = NO;
-    [_databaseReadConnection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+    __block PWFError *error = nil;
+    @weakify(self);
+    [self.databaseReadConnection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        @strongify(self);
         NSString *tempPassword = [transaction objectForKey:name inCollection:kPWFAccountCollection];
         if (tempPassword.length) {
             loginSuccess = [[password md5] isEqualToString:tempPassword];
+            if (!loginSuccess) {
+                error = [PWFError errorWithDomain:@"密码错误" code:PWFErrorCodeNormal];
+            } else {
+                [self writeLoginName:name];
+            }
+        } else {
+            error = [PWFError errorWithDomain:@"该用户没有注册" code:PWFErrorCodeNormal];
         }
     }];
-    PWFError *error = nil;
-    if (!loginSuccess) {
-        error = [PWFError errorWithDomain:@"密码错误" code:PWFErrorCodeNormal];
-    } else {
-        //写入用户登录名称登录时间
-        [self writeLoginName:name];
-    }
+
     if (completion) {
         completion(loginSuccess, error);
     }
@@ -175,6 +180,59 @@ static double const kPWFLoginTimeInterval = 2.0 * 60 * 60;//登录时间为两�
         self.isLogin = YES;
         self.loginAccount = [[PWFAccountInfo alloc] initWithName:name];
     }];
+}
+
+#pragma mark -
+#pragma mark Password Service
+- (void)savePassword:(NSString *)password completion:(nullable PWFDataCompletionBlock)completion
+{
+    if (!self.loginAccount.name.length) {
+        if (completion) {
+            PWFError *error = [PWFError errorWithDomain:@"用户未登录" code:PWFErrorCodeNormal];
+            completion(NO, error);
+        }
+        return;
+    }
+    __block NSMutableArray *passwordArray = nil;
+    NSString *key = [NSString stringWithFormat:@"password_%@", self.loginAccount.name];
+    [_databaseReadConnection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSArray *array = [transaction objectForKey:key inCollection:kPWFPasswordCollection];
+        passwordArray = [NSMutableArray arrayWithArray:array];
+    }];
+
+    PWFPasswordInfo *passwordInfo = [[PWFPasswordInfo alloc] initWithPassword:password createDate:[NSDate date]];
+    [passwordArray addObject:passwordInfo];
+    [_databaseWriteConnection asyncReadWriteWithBlock:^(YapDatabaseReadWriteTransaction * _Nonnull transaction) {
+        [transaction setObject:passwordArray forKey:key inCollection:kPWFPasswordCollection];
+    } completionBlock:^{
+        if (completion) {
+            completion(YES, nil);
+        }
+    }];
+}
+
+- (void)queryPassword:(void (^)(NSArray * _Nullable passwordArray,  PWFError * _Nullable error))completion
+{
+    if (!self.loginAccount.name.length) {
+        if (completion) {
+            PWFError *error = [PWFError errorWithDomain:@"用户未登录" code:PWFErrorCodeNormal];
+            completion(nil, error);
+        }
+        return;
+    }
+    [_databaseReadConnection readWithBlock:^(YapDatabaseReadTransaction * _Nonnull transaction) {
+        NSString *key = [NSString stringWithFormat:@"password_%@", self.loginAccount.name];
+        NSArray *array = [transaction objectForKey:key inCollection:kPWFPasswordCollection];
+        if (completion) {
+            completion(array, nil);
+        }
+    }];
+
+}
+
+- (void)deletePassword:(NSString *)passwordID completion:(nullable PWFDataCompletionBlock)completion
+{
+    
 }
 
 @end

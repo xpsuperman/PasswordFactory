@@ -12,6 +12,9 @@
 #import "PWFFactoryHeaderView.h"
 #import "UIButton+Customer.h"
 #import "PWFPasswordHistoryViewController.h"
+#import "PWFPasswordGenerator.h"
+#import "PWFDataManager.h"
+#import "PWFError.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) PWFFactoryHeaderView *headerView;
 @property (nonatomic, strong) UILabel *generatePasswordLabel;
+@property (nonatomic, strong) UIButton *copyedButton;
 
 @end
 
@@ -90,11 +94,21 @@ NS_ASSUME_NONNULL_BEGIN
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
         make.top.equalTo(generateButton.mas_bottom).offset(30);
         make.height.mas_equalTo(20);
     }];
     self.generatePasswordLabel = label;
+    
+    _copyedButton = [UIButton buttonWithTitle:@"复制" target:self selector:@selector(copyButtonClick:)];
+    _copyedButton.titleLabel.font = Font(13);
+    [self.view addSubview:_copyedButton];
+    _copyedButton.hidden = YES;
+    [self.copyedButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(label.mas_right).offset(10);
+        make.centerY.equalTo(label);
+        make.size.mas_equalTo(CGSizeMake(40, 30));
+        make.right.equalTo(self.view).offset(-10);
+    }];
     
     UIButton *passwordHistoryButton = [UIButton buttonWithTitle:@"查看历史" target:self selector:@selector(checkHistoryPassword:)];
     [self.view addSubview:passwordHistoryButton];
@@ -109,7 +123,27 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark Selector Methods
 - (void)generatePassword:(id)sender
 {
-    
+    NSString *password = [PWFPasswordGenerator generatePassword:self.headerView.currentQuantity];
+    self.generatePasswordLabel.text = password;
+    self.copyedButton.hidden = NO;
+    //把生成的密码存入到数据库
+    [[PWFDataManager sharedInstance] savePassword:password completion:^(BOOL success, PWFError * _Nullable error) {
+        if (success) {
+            NSLog(@"生成密码成功");
+        } else if (error) {
+            [self showCustomerLoading:error.domain];
+        } else {
+            NSLog(@"未知错误");
+        }
+    }];
+}
+
+- (void)copyButtonClick:(id)sender
+{
+    //把文本拷贝到剪切板
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    [pasteboard setString:self.generatePasswordLabel.text];
+    [self showCustomerLoading:@"内容已复制到剪切板"];
 }
 
 - (void)checkHistoryPassword:(id)sender

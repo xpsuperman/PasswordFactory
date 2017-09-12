@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PWFLoginCompletionBlock)(BOOL success,  PWFError * _Nullable error);
+typedef void(^PWFDataCompletionBlock)(BOOL success, PWFError * _Nullable error);
 
 @interface PWFDataManager : NSObject
 
@@ -25,9 +25,17 @@ typedef void(^PWFLoginCompletionBlock)(BOOL success,  PWFError * _Nullable error
 /**
     Login Info
  **/
-- (void)registerWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFLoginCompletionBlock)completion;
-- (void)loginWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFLoginCompletionBlock)completion;
+- (void)registerWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFDataCompletionBlock)completion;
+- (void)loginWithName:(NSString *)name password:(NSString *)password completion:(nullable PWFDataCompletionBlock)completion;
 - (void)logout;
+
+/**
+    password service
+ **/
+
+- (void)savePassword:(NSString *)password completion:(nullable PWFDataCompletionBlock)completion;
+- (void)queryPassword:(void (^)(NSArray * _Nullable passwordArray,  PWFError * _Nullable error))completion;
+- (void)deletePassword:(NSString *)passwordID completion:(nullable PWFDataCompletionBlock)completion;
 
 @end
 

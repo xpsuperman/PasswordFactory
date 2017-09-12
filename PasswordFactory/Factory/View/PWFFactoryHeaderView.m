@@ -10,8 +10,8 @@
 #import "UIImage+Resize.h"
 
 static NSInteger const kPWFPasswordMinLength = 8;
-static NSInteger const kPWFPasswordDefaultLength = 16;
-static NSInteger const kPWFPasswordMaxLength = 25;
+static NSInteger const kPWFPasswordDefaultLength = 26;
+static NSInteger const kPWFPasswordMaxLength = 50;
 
 NS_ASSUME_NONNULL_BEGIN
 
