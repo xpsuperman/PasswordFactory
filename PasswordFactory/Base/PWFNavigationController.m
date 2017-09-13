@@ -43,8 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIBarButtonItem *)backBarButtonItem
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:CGRectMake(0, 0, 30, 30)];
     [button setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 0, 30, 30)];
     [button addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
     return [[UIBarButtonItem alloc] initWithCustomView:button];
 }

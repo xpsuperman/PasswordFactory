@@ -12,6 +12,7 @@ target 'PasswordFactory' do
   pod 'YapDatabase', '3.0.1', :subspecs => ['Standard/Core'], :inhibit_warnings => true
   pod 'MBProgressHUD', '1.0.0', :inhibit_warnings => true
   pod 'ReactiveCocoa', '2.5',  :inhibit_warnings => true
+  pod 'CocoaLumberjack', '3.2.1',   :inhibit_warnings => true
 
 end
 
